@@ -1,0 +1,8 @@
+[config_basic]
+ioc_dir = ""
+label_type = "hierarchical_label"
+
+[config_addition]
+decoupling_cap = false
+
+--KiCAD_Source-- # Paste the MCU object in lines below
