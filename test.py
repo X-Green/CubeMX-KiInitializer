@@ -1,26 +1,6 @@
-def parse_string(s):
-    stack = []
-    current_obj = {}
-    for token in s.split():
-        
-        if token == '(':
-            stack.append(current_obj)
-            current_obj = {}
-        elif token == ')':
-            if stack:
-                parent_obj = stack.pop()
-                parent_obj[current_obj['name']] = current_obj['elements']
-                current_obj = parent_obj
-        else:
-            if 'name' not in current_obj:
-                current_obj['name'] = token
-                current_obj['elements'] = {}
-            else:
-                current_obj['elements'][token] = None
-    return current_obj['elements']
+import KiCAD_sch_parser
 
-
-kicad_obj = (parse_string("""
+kicad_example = """
 (lib_symbols
   (symbol "MCU_ST_STM32G4:STM32G431CBUx" (in_bom yes) (on_board yes)
     (property "Reference" "U" (at -12.7 44.45 0)
@@ -713,6 +693,8 @@ kicad_obj = (parse_string("""
   )
 )
 
-"""))
+"""
+
+kicad_obj = KiCAD_sch_parser.parse_tree_string(kicad_example)
 
 print(kicad_obj)
